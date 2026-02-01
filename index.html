@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Be My Valentine 💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: #fff;
+    width: 340px;
+    padding: 25px 20px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    position: relative;
+  }
+
+  .emoji {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin: 10px 0 20px;
+    color: #333;
+  }
+
+  .buttons-area {
+    position: relative;
+    height: 120px;
+  }
+
+  button {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #yesBtn {
+    background: #ff4d79;
+    color: white;
+    font-size: 18px;
+  }
+
+  #noBtn {
+    position: absolute;
+    background: #eee;
+    color: #333;
+    left: 200px;
+    top: 20px;
+  }
+
+  .hint {
+    font-size: 12px;
+    color: #777;
+    margin-top: 10px;
+  }
+
+  .result {
+    display: none;
+  }
+
+  .result img {
+    width: 200px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="emoji">🐻💗</div>
+
+  <div id="questionScreen">
+    <h2><span id="name">Nirali</span>, will you be my Valentine? 💘</h2>
+
+    <div class="buttons-area" id="area">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div class="hint">"No" seems a bit shy 😜</div>
+  </div>
+
+  <div id="resultScreen" class="result">
+    <h2>YAY! 🎉💖</h2>
+    <p>You just made my day 😍</p>
+    <!-- Change the image below to anything you want -->
+    <img src="yay-icegif-8.gif" alt="Yay GIF" style="width:200px; border-radius:12px;">
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const area = document.getElementById("area");
+  const yesBtn = document.getElementById("yesBtn");
+  const questionScreen = document.getElementById("questionScreen");
+  const resultScreen = document.getElementById("resultScreen");
+
+  function moveNoButton() {
+    const btnRect = noBtn.getBoundingClientRect();
+    const maxX = area.clientWidth - btnRect.width;
+    const maxY = area.clientHeight - btnRect.height;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+
+  // Mouse
+  noBtn.addEventListener("mouseover", moveNoButton);
+  // Touch (mobile)
+  noBtn.addEventListener("touchstart", moveNoButton);
+
+  yesBtn.addEventListener("click", () => {
+    questionScreen.style.display = "none";
+    resultScreen.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
